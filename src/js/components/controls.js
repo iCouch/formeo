@@ -192,7 +192,7 @@ export class Controls {
           required: false
         },
         config: {
-          label: i18n.get('checkbox') + '/' + i18n.get('group'),
+          label: i18n.get('checkboxes'),
           disabledAttrs: ['type']
         },
         meta: {

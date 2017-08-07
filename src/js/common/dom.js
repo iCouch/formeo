@@ -123,8 +123,6 @@ class DOM {
           actionButtons: {
             buttons: [
               clone(handle),
-              edit,
-              cloneItem,
               remove
             ],
             order: [],
@@ -134,7 +132,6 @@ class DOM {
         columns: {
           actionButtons: {
             buttons: [
-              clone(cloneItem),
               clone(handle),
               remove
             ],
@@ -146,8 +143,6 @@ class DOM {
           actionButtons: {
             buttons: [
               handle,
-              edit,
-              cloneItem,
               remove
             ],
             order: [],
@@ -161,7 +156,7 @@ class DOM {
       icon('handle')
     ];
     defaultConfig.columns.actionButtons.buttons[0].content = [
-      icon('copy'),
+      icon('move'),
       icon('handle'),
     ];
 

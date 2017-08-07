@@ -4,6 +4,19 @@
   padding: 5px;
   transition: background-color 125ms ease-in-out;
 
+  &.field-type-checkbox {
+    .field-edit{
+      display: block !important;
+      .prop-inputs input:nth-child(2) {
+        display: none;
+      }
+    }
+    .field-preview{
+      .f-field-group>div, .panel-labels{
+        display: none;
+      }
+    }
+  }
   &.first-field {
     border-top-right-radius: $input-border-radius;
 

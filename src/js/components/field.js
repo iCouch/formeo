@@ -27,7 +27,15 @@ export default class Field {
 
     formData.fields.set(_this.fieldID, fieldData);
     this.fieldData = fieldData;
-
+    let custom = clone(formData.fields.get(_this.fieldID));
+    let fieldPreview = {
+      tag: 'div',
+      attrs: {
+        className: 'field-preview'
+      },
+      content: dom.create(custom, true),
+    };
+    custom.config.attrs={contenteditable: 'true'};
     let field = {
       tag: 'li',
       attrs: {
@@ -36,6 +44,7 @@ export default class Field {
       id: _this.fieldID,
       content: [
         dom.actionButtons(_this.fieldID, 'field'), // fieldEdit window
+        fieldPreview,
         _this.fieldEdit(), // fieldEdit window
       ],
       panelNav: _this.panelNav,
@@ -44,6 +53,11 @@ export default class Field {
       },
       fType: 'fields',
       action: {
+        click: evt => {
+          if (evt.target.contentEditable === 'true') {
+            evt.preventDefault();
+          }
+        },
         mouseenter: evt => {
           let field = document.getElementById(_this.fieldID);
           field.classList.add('hovering-field');
@@ -51,6 +65,19 @@ export default class Field {
         mouseleave: evt => {
           let field = document.getElementById(_this.fieldID);
           field.classList.remove('hovering-field');
+        },
+        input: evt => {
+          let fieldData = formData.fields.get(_this.fieldID);
+          let prop = 'content';
+          if (evt.target.fMap) {
+            prop = evt.target.fMap;
+          }
+          if (evt.target.contentEditable === 'true') {
+            h.set(fieldData, prop, evt.target.innerHTML);
+          } else {
+            h.set(fieldData, prop, evt.target.value);
+          }
+          data.save('field', _this.fieldID);
         }
       }
     };
@@ -62,8 +89,8 @@ export default class Field {
       instance: _this
     });
 
-    _this.preview = dom.create(_this.fieldPreview());
-    field.appendChild(_this.preview);
+    // _this.preview = dom.create(_this.fieldPreview());
+    // field.appendChild(_this.preview);
 
     return field;
   }
@@ -231,7 +258,6 @@ export default class Field {
 
     if (args.propType === 'array') {
       inputs.className.push('f-input-group');
-      controls.content.unshift(order);
     }
 
     property.propData = fieldData[panelType][dataProp];
@@ -582,7 +608,7 @@ export default class Field {
     let _this = this;
     let panels = [];
     let editable = ['object', 'array'];
-    let noPanels = ['config', 'meta', 'action'];
+    let noPanels = ['config', 'meta', 'action', 'attrs'];
     let fieldData = formData.fields.get(_this.fieldID);
     let allowedPanels = Object.keys(fieldData).filter(elem => {
         return !h.inArray(elem, noPanels);
