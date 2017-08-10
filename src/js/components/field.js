@@ -242,8 +242,8 @@ export default class Field {
             }
             data.save(panelType, parent);
             dom.empty(_this.preview);
-            let newPreview = dom.create(fieldData, true);
-            _this.preview.appendChild(newPreview);
+            // let newPreview = dom.create(fieldData, true);
+            // _this.preview.appendChild(newPreview);
             _this.resizePanelWrap();
           });
         }
@@ -542,8 +542,8 @@ export default class Field {
     // Save Fields Attrs
     data.save();
     dom.empty(_this.preview);
-    let newPreview = dom.create(formData.fields.get(_this.fieldID), true);
-    _this.preview.appendChild(newPreview);
+    // let newPreview = dom.create(formData.fields.get(_this.fieldID), true);
+    // _this.preview.appendChild(newPreview);
   }
 
   /**

@@ -786,6 +786,9 @@ class DOM {
    * @return {Object} element with its children removed
    */
   empty(elem) {
+    if (!elem) {
+      return false;
+    }
     while (elem.firstChild) {
       this.remove(elem.firstChild);
     }
@@ -924,6 +927,9 @@ class DOM {
    * @return  {Object} parent element
    */
   remove(elem) {
+    if (!elem) {
+      return true;
+    }
     let {fType, id} = elem;
     if (fType) {
       let parent = elem.parentElement;

@@ -313,7 +313,7 @@ class Formeo {
   render() {
     let _this = this;
     let controls = formeo.controls.element;
-
+    console.log('wtf?', this);
     let elemConfig = {
         tag: 'div',
         attrs: {
