@@ -542,6 +542,7 @@ class DOM {
 
     let optionMap = (option, i) => {
       const defaultInput = () => {
+        option = option || {};
         let input = {
           tag: 'input',
           attrs: {

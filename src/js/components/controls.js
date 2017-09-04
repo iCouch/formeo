@@ -206,7 +206,7 @@ export class Controls {
             count: 1
           }),
           value: 'checkbox-1',
-          selected: true
+          selected: false
         }]
       }, {
         tag: 'input',
