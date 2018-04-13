@@ -419,7 +419,7 @@ export class Controls {
       attrs: {
         type: 'button'
       },
-      content: [elem.config.label],
+      content: [elem.config.label || ''],
       action: _this.controlEvents,
     };
     let elementControl = {
